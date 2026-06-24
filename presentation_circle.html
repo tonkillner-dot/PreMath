@@ -428,6 +428,22 @@
             flex-direction: column;
             gap: 12px;
             position: relative;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            border: 1px solid var(--card-border);
+        }
+
+        .cpa-step:hover {
+            border-color: rgba(0, 240, 255, 0.3);
+            background: rgba(255, 255, 255, 0.05);
+            transform: translateY(-2px);
+        }
+
+        .cpa-step.active {
+            border-color: var(--primary);
+            box-shadow: 0 0 20px rgba(0, 240, 255, 0.15);
+            background: rgba(0, 240, 255, 0.04);
+            transform: scale(1.02);
         }
 
         .cpa-badge {
@@ -872,13 +888,15 @@
             <h2 class="slide-title"><i class="fa-solid fa-route"></i>ลำดับกิจกรรมตามหลัก C-P-A (ขั้นตอนที่ 1 - 3)</h2>
             <div class="grid-2" style="grid-template-columns: 1fr 1.4fr; gap: 32px; align-items: start;">
                 <div class="glass-card" style="padding: 16px; text-align: center;">
-                    <img src="circle_class_activity.png" alt="กิจกรรมในชั้นเรียน" style="width: 100%; border-radius: 12px; border: 1px solid var(--card-border); box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); margin-bottom: 12px;">
-                    <p style="font-size: 14px; color: var(--primary); font-weight: 600;">
-                        บรรยากาศการทำกิจกรรมลงมือวัดสิ่งของทรงกลมจริงรอบตัวในห้องเรียน
+                    <div class="cpa-image-container" style="position: relative; overflow: hidden; border-radius: 12px; border: 1px solid var(--card-border); box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); margin-bottom: 12px; height: 320px; display: flex; justify-content: center; align-items: center; background: rgba(0,0,0,0.2);">
+                        <img id="cpa-img" src="circle_step1_concrete.png" alt="ขั้นตอนกิจกรรม" class="cpa-img" style="max-width: 100%; max-height: 100%; object-fit: contain; transition: opacity 0.3s ease;">
+                    </div>
+                    <p id="cpa-caption" style="font-size: 14px; color: var(--primary); font-weight: 600; min-height: 40px; line-height: 1.5;">
+                        ขั้น Concrete: นักเรียนจับกลุ่มใช้เชือกและสายวัดเพื่อหาเส้นรอบวงจริงจากสิ่งของทรงกลมในห้องเรียน
                     </p>
                 </div>
                 <div style="display: flex; flex-direction: column; gap: 16px; max-height: 480px; overflow-y: auto; padding-right: 8px;">
-                    <div class="glass-card cpa-step" style="padding: 20px;">
+                    <div class="glass-card cpa-step active" onclick="switchCPA(0)" style="padding: 20px;">
                         <span class="cpa-badge">CONCRETE</span>
                         <h3>ขั้นที่ 1: ค้นพบค่า \(\pi\) ด้วยมือตนเอง</h3>
                         <p style="font-size: 14px; line-height: 1.5; color: var(--text-muted);">
@@ -887,7 +905,7 @@
                         </p>
                     </div>
                     
-                    <div class="glass-card cpa-step" style="padding: 20px;">
+                    <div class="glass-card cpa-step" onclick="switchCPA(1)" style="padding: 20px;">
                         <span class="cpa-badge">PICTORIAL</span>
                         <h3>ขั้นที่ 2: วาดสเก็ตช์แบบแปลนสระ</h3>
                         <p style="font-size: 14px; line-height: 1.5; color: var(--text-muted);">
@@ -896,7 +914,7 @@
                         </p>
                     </div>
                     
-                    <div class="glass-card cpa-step" style="padding: 20px;">
+                    <div class="glass-card cpa-step" onclick="switchCPA(2)" style="padding: 20px;">
                         <span class="cpa-badge">ABSTRACT</span>
                         <h3>ขั้นที่ 3: แทนค่าลงในโมเดลสูตร</h3>
                         <p style="font-size: 14px; line-height: 1.5; color: var(--text-muted);">
@@ -1171,6 +1189,44 @@
                 stepFast.style.opacity = '0.3';
                 animationStep = 0;
             }
+        }
+
+        // CPA Interactive switch
+        const cpaData = [
+            {
+                src: 'circle_step1_concrete.png',
+                caption: 'ขั้น Concrete: นักเรียนจับกลุ่มใช้เชือกและสายวัดเพื่อหาเส้นรอบวงจริงจากสิ่งของทรงกลมในห้องเรียน'
+            },
+            {
+                src: 'circle_step2_pictorial.png',
+                caption: 'ขั้น Pictorial: วาดสเก็ตช์ลงกระดาษเขียนแบบแปลนสระน้ำพุจำลอง รัศมี 3.5 เมตร สื่อภาพชัดเจน'
+            },
+            {
+                src: 'circle_step3_abstract.png',
+                caption: 'ขั้น Abstract: ทำการแทนค่าสูตรเส้นรอบวง 2 * pi * r และฝึกการตัดทอนคำนวณอย่างเป็นระบบ'
+            }
+        ];
+
+        function switchCPA(index) {
+            const imgEl = document.getElementById('cpa-img');
+            const capEl = document.getElementById('cpa-caption');
+            
+            imgEl.style.opacity = '0';
+            
+            setTimeout(() => {
+                imgEl.src = cpaData[index].src;
+                capEl.innerText = cpaData[index].caption;
+                imgEl.style.opacity = '1';
+            }, 150);
+            
+            const steps = document.querySelectorAll('.cpa-step');
+            steps.forEach((step, idx) => {
+                if (idx === index) {
+                    step.classList.add('active');
+                } else {
+                    step.classList.remove('active');
+                }
+            });
         }
     </script>
 </body>
