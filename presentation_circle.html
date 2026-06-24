@@ -870,35 +870,40 @@
         <!-- Slide 4: CPA Process (Steps 1-3) -->
         <div class="slide" id="slide-4">
             <h2 class="slide-title"><i class="fa-solid fa-route"></i>ลำดับกิจกรรมตามหลัก C-P-A (ขั้นตอนที่ 1 - 3)</h2>
-            <div class="grid-3">
-                <div class="glass-card cpa-step">
-                    <span class="cpa-badge">CONCRETE</span>
-                    <h3>ขั้นที่ 1: ค้นพบค่า \(\pi\) ด้วยมือตนเอง</h3>
-                    <p>
-                        นักเรียนแบ่งกลุ่ม ช่วยกันใช้เชือกเส้นเล็กพันขอบจานกระดาษหรือฝากระป๋องเพื่อวัดความยาวเส้นรอบวง และวัดความยาวเส้นผ่านศูนย์กลาง 
-                        จากนั้นนำค่าทั้งสองมาหารกันเพื่อสังเกตว่าผลลัพธ์ของวัตถุทุกชนิดจะมีค่าใกล้เคียง <strong>3.14 หรือ 22/7 เสมอ</strong>
+            <div class="grid-2" style="grid-template-columns: 1fr 1.4fr; gap: 32px; align-items: start;">
+                <div class="glass-card" style="padding: 16px; text-align: center;">
+                    <img src="circle_class_activity.png" alt="กิจกรรมในชั้นเรียน" style="width: 100%; border-radius: 12px; border: 1px solid var(--card-border); box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); margin-bottom: 12px;">
+                    <p style="font-size: 14px; color: var(--primary); font-weight: 600;">
+                        บรรยากาศการทำกิจกรรมลงมือวัดสิ่งของทรงกลมจริงรอบตัวในห้องเรียน
                     </p>
                 </div>
-                
-                <div class="glass-card cpa-step">
-                    <span class="cpa-badge">PICTORIAL</span>
-                    <h3>ขั้นที่ 2: วาดสเก็ตช์แบบแปลนสระ</h3>
-                    <p>
-                        นักเรียนวาดรูปวงกลมลงในกระดาษเขียนแบบจำลองแนวรั้วล้อมรอบสระน้ำพุ ลากเส้นรัศมี 
-                        และลงสีเน้นขอบรอบรูปสระ <strong>(r = 3.5 เมตร)</strong> เพื่อกระตุ้นระบบประสาทตา (Spatial Visualization) ให้เข้าใจความแตกต่างระหว่างพื้นที่และเส้นรอบวงอย่างชัดเจน
-                    </p>
-                </div>
-                
-                <div class="glass-card cpa-step">
-                    <span class="cpa-badge">ABSTRACT</span>
-                    <h3>ขั้นที่ 3: แทนค่าลงในโมเดลสูตร</h3>
-                    <p>
-                        นักเรียนเขียนสัญลักษณ์แทนสูตรลงใบงานคณิตศาสตร์กลุ่ม 
-                        $$\text{ความยาวรั้ว} = 2\pi r$$
-                        แทนค่าทางคณิตศาสตร์:
-                        $$2 \times \frac{22}{7} \times 3.5$$
-                        และช่วยกันระดมสมองหาวิธีคำนวณที่ได้ผลลัพธ์รวดเร็วที่สุดในกลุ่ม
-                    </p>
+                <div style="display: flex; flex-direction: column; gap: 16px; max-height: 480px; overflow-y: auto; padding-right: 8px;">
+                    <div class="glass-card cpa-step" style="padding: 20px;">
+                        <span class="cpa-badge">CONCRETE</span>
+                        <h3>ขั้นที่ 1: ค้นพบค่า \(\pi\) ด้วยมือตนเอง</h3>
+                        <p style="font-size: 14px; line-height: 1.5; color: var(--text-muted);">
+                            นักเรียนแบ่งกลุ่ม ช่วยกันใช้เชือกเส้นเล็กพันขอบจานกระดาษหรือฝากระป๋องเพื่อวัดความยาวเส้นรอบวง และวัดความยาวเส้นผ่านศูนย์กลาง 
+                            จากนั้นนำมาหารกันเพื่อพบว่าผลลัพธ์มีค่าใกล้เคียง <strong>3.14 หรือ 22/7 เสมอ</strong>
+                        </p>
+                    </div>
+                    
+                    <div class="glass-card cpa-step" style="padding: 20px;">
+                        <span class="cpa-badge">PICTORIAL</span>
+                        <h3>ขั้นที่ 2: วาดสเก็ตช์แบบแปลนสระ</h3>
+                        <p style="font-size: 14px; line-height: 1.5; color: var(--text-muted);">
+                            นักเรียนวาดรูปวงกลมลงในกระดาษเขียนแบบจำลองแนวรั้วล้อมรอบสระน้ำพุ ลากเส้นรัศมี 
+                            และลงสีเน้นขอบรอบรูปสระ <strong>(r = 3.5 เมตร)</strong> เพื่อกระตุ้นระบบประสาทตาให้เข้าใจเส้นขอบอย่างชัดเจน
+                        </p>
+                    </div>
+                    
+                    <div class="glass-card cpa-step" style="padding: 20px;">
+                        <span class="cpa-badge">ABSTRACT</span>
+                        <h3>ขั้นที่ 3: แทนค่าลงในโมเดลสูตร</h3>
+                        <p style="font-size: 14px; line-height: 1.5; color: var(--text-muted);">
+                            นักเรียนเขียนสัญลักษณ์แทนสูตรลงใบงานกลุ่ม: \(\text{ความยาวรั้ว} = 2\pi r\) 
+                            แทนค่าตัวเลขในสมการ: \(2 \times \frac{22}{7} \times 3.5\) เพื่อหาคำตอบร่วมกัน
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
