@@ -23,6 +23,7 @@
             --bg-color: #090a0f;
             --primary: #00f0ff;
             --secondary: #f59e0b; /* Amber Gold */
+            --accent-green: #10b981; /* Emerald Green */
             --accent-pink: #ec4899;
             --text-main: #f8fafc;
             --text-muted: #94a3b8;
@@ -206,6 +207,10 @@
             background: linear-gradient(90deg, var(--secondary), var(--accent-pink));
         }
 
+        .card-volume::before {
+            background: linear-gradient(90deg, var(--accent-green), var(--accent-pink));
+        }
+
         .portal-card:hover {
             transform: translateY(-8px);
             border-color: rgba(255, 255, 255, 0.15);
@@ -218,6 +223,10 @@
 
         .card-time:hover {
             box-shadow: 0 20px 50px rgba(245, 158, 11, 0.07);
+        }
+
+        .card-volume:hover {
+            box-shadow: 0 20px 50px rgba(16, 185, 129, 0.07);
         }
 
         .card-top-row {
@@ -249,6 +258,12 @@
             border: 1px solid rgba(245, 158, 11, 0.15);
         }
 
+        .card-volume .card-icon {
+            background: rgba(16, 185, 129, 0.08);
+            color: var(--accent-green);
+            border: 1px solid rgba(16, 185, 129, 0.15);
+        }
+
         .badge-standard {
             background: rgba(255, 255, 255, 0.04);
             border: 1px solid var(--card-border);
@@ -266,6 +281,11 @@
         .card-time .badge-standard {
             color: var(--secondary);
             border-color: rgba(245, 158, 11, 0.2);
+        }
+
+        .card-volume .badge-standard {
+            color: var(--accent-green);
+            border-color: rgba(16, 185, 129, 0.2);
         }
 
         .card-title {
@@ -307,6 +327,12 @@
             background: linear-gradient(135deg, var(--secondary), var(--accent-pink));
             color: #000000;
             box-shadow: 0 4px 15px rgba(245, 158, 11, 0.2);
+        }
+
+        .card-volume .btn-enter {
+            background: linear-gradient(135deg, var(--accent-green), var(--accent-pink));
+            color: #000000;
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.2);
         }
 
         .btn-enter:hover {
@@ -435,6 +461,28 @@
                     </p>
                 </div>
                 <a href="presentation_time.html" class="btn-enter">
+                    <span>เปิดสไลด์นำเสนอ</span>
+                    <i class="fa-solid fa-circle-play"></i>
+                </a>
+            </div>
+
+            <!-- Card 3: Volume -->
+            <div class="portal-card card-volume">
+                <div>
+                    <div class="card-top-row">
+                        <div class="card-icon">
+                            <i class="fa-solid fa-cubes"></i>
+                        </div>
+                        <span class="badge-standard">ค 2.1 ป.6/1</span>
+                    </div>
+                    <h3 class="card-title">ผู้รับเหมากล่องแปลงร่าง</h3>
+                    <p class="card-desc">
+                        กิจกรรมการเรียนรู้เรื่อง <strong>ปริมาตรทรงสี่เหลี่ยมมุมฉากประกอบ</strong> 
+                        สอนแยกส่วนวิเคราะห์หาคำตอบเปรียบเทียบ 2 วิธี (แยกชิ้นคำนวณ vs รวบรวมส่วนสูง) 
+                        เพื่อความรวดเร็วและปลอดภัยในการทำโจทย์ O-NET พร้อมบล็อกไม้จำลองแบบตอบสนอง
+                    </p>
+                </div>
+                <a href="presentation_volume.html" class="btn-enter">
                     <span>เปิดสไลด์นำเสนอ</span>
                     <i class="fa-solid fa-circle-play"></i>
                 </a>

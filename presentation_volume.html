@@ -1,0 +1,1139 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>นำเสนอแผนกิจกรรม Active Learning: ปริมาตรทรงประกอบ ป.6</title>
+    <!-- Import Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@300;400;500;600;700&family=Outfit:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- MathJax for rendering LaTeX -->
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['\\(', '\\)'], ['$', '$']],
+                displayMath: [['\\[', '\\]'], ['$$', '$$']]
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    
+    <style>
+        /* Reset and Base Styles */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --bg-color: #0b0f19; /* Deep engineering blue-gray */
+            --primary: #10b981;  /* Emerald Green */
+            --secondary: #00f0ff; /* Cyan */
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --card-bg: rgba(255, 255, 255, 0.02);
+            --card-border: rgba(255, 255, 255, 0.08);
+            --accent-purple: #ab3cff;
+            --accent-red: #ef4444;
+            --font-thai: 'Noto Sans Thai', sans-serif;
+            --font-eng: 'Outfit', sans-serif;
+        }
+
+        body {
+            font-family: var(--font-thai);
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            overflow: hidden;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(16, 185, 129, 0.05) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(0, 240, 255, 0.05) 0%, transparent 40%);
+        }
+
+        /* Background Decorative Grid Lines */
+        .bg-grid {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(255, 255, 255, 0.01) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.01) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: 0;
+            pointer-events: none;
+            opacity: 0.8;
+        }
+
+        /* Header Section */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 24px 48px;
+            z-index: 10;
+            border-bottom: 1px solid var(--card-border);
+            background: rgba(11, 15, 25, 0.6);
+            backdrop-filter: blur(10px);
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-icon {
+            font-size: 24px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: pulseIcon 2s infinite ease-in-out;
+        }
+
+        @keyframes pulseIcon {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .logo-text {
+            font-family: var(--font-eng);
+            font-weight: 700;
+            font-size: 20px;
+            letter-spacing: 1px;
+        }
+
+        .badge-standard {
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            color: var(--primary);
+            padding: 4px 12px;
+            border-radius: 99px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        /* Slide Container */
+        .slide-container {
+            flex-grow: 1;
+            position: relative;
+            z-index: 5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+        }
+
+        .slide {
+            position: absolute;
+            width: 90%;
+            max-width: 1200px;
+            height: 80%;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateX(50px) scale(0.98);
+            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .slide.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(0) scale(1);
+        }
+
+        /* Slide Content Common Typography */
+        .slide-title {
+            font-size: 38px;
+            font-weight: 700;
+            margin-bottom: 24px;
+            background: linear-gradient(90deg, #ffffff, #cbd5e1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .slide-title i {
+            color: var(--primary);
+            font-size: 32px;
+        }
+
+        /* Layout Grids */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 24px;
+        }
+
+        /* Cards & Glassmorphism */
+        .glass-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            padding: 32px;
+            backdrop-filter: blur(12px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .glass-card:hover {
+            border-color: rgba(16, 185, 129, 0.2);
+            box-shadow: 0 8px 32px rgba(16, 185, 129, 0.05);
+            transform: translateY(-2px);
+        }
+
+        /* Slide Specific Designs */
+        /* Slide 1: Cover */
+        .cover-content {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .cover-subtitle {
+            color: var(--primary);
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-size: 16px;
+            margin-bottom: 16px;
+            font-family: var(--font-eng);
+        }
+
+        .cover-title {
+            font-size: 52px;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 24px;
+            background: linear-gradient(135deg, #ffffff 30%, var(--primary) 70%, var(--secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .cover-desc {
+            font-size: 20px;
+            color: var(--text-muted);
+            max-width: 800px;
+            line-height: 1.6;
+            margin-bottom: 40px;
+        }
+
+        .cover-badge-row {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+
+        .cover-badge {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 8px 20px;
+            border-radius: 99px;
+            font-size: 15px;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Slide 2: The Trap */
+        .trap-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .trap-item {
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+        }
+
+        .trap-number {
+            font-family: var(--font-eng);
+            font-weight: 800;
+            font-size: 28px;
+            color: var(--accent-red);
+            background: rgba(239, 68, 68, 0.1);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-shrink: 0;
+        }
+
+        .trap-details h4 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: #ffffff;
+        }
+
+        .trap-details p {
+            font-size: 15px;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        .image-illustration {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Slide 3: Goals */
+        .goal-card {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .goal-card h3 {
+            font-size: 22px;
+            font-weight: 600;
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 8px;
+            margin-bottom: 12px;
+        }
+
+        .goal-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .goal-list li {
+            position: relative;
+            padding-left: 28px;
+            font-size: 15px;
+            line-height: 1.5;
+        }
+
+        .goal-list li::before {
+            content: '\f058';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            top: 2px;
+            color: var(--primary);
+        }
+
+        /* Slide 4: CPA Process */
+        .cpa-step {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            position: relative;
+        }
+
+        .cpa-badge {
+            align-self: flex-start;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            padding: 6px 16px;
+            border-radius: 8px;
+            font-family: var(--font-eng);
+            font-weight: 700;
+            font-size: 14px;
+            letter-spacing: 1px;
+            color: black;
+        }
+
+        .cpa-step h3 {
+            font-size: 20px;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .cpa-step p {
+            font-size: 14px;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        /* Slide 5: Interactive Box Builder Simulator */
+        .simulator-display {
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            padding: 24px;
+            min-height: 300px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+        }
+
+        .box-stage {
+            flex-grow: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            height: 180px;
+        }
+
+        .render-box {
+            position: absolute;
+            width: 150px;
+            border: 2px solid var(--primary);
+            border-radius: 6px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: var(--font-eng);
+            font-weight: 700;
+            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            color: white;
+        }
+
+        .box-top {
+            height: 60px; /* Represents height 8 */
+            background: rgba(16, 185, 129, 0.15);
+            border-color: var(--primary);
+            transform: translateY(-20px);
+            z-index: 2;
+        }
+
+        .box-bottom {
+            height: 90px; /* Represents height 12 */
+            background: rgba(0, 240, 255, 0.15);
+            border-color: var(--secondary);
+            transform: translateY(55px);
+            z-index: 1;
+        }
+
+        /* Combined Height View */
+        .box-stage.combined .box-top {
+            transform: translateY(12px);
+            border-bottom: 1px dashed rgba(255,255,255,0.3);
+        }
+
+        .box-stage.combined .box-bottom {
+            transform: translateY(55px);
+            border-top: none;
+        }
+
+        /* Separated View */
+        .box-stage.separated .box-top {
+            transform: translateY(-45px);
+        }
+
+        .box-stage.separated .box-bottom {
+            transform: translateY(55px);
+        }
+
+        .box-label {
+            position: absolute;
+            font-size: 13px;
+            font-weight: 600;
+            background: var(--bg-color);
+            padding: 2px 6px;
+            border-radius: 4px;
+            border: 1px solid var(--card-border);
+            font-family: var(--font-thai);
+        }
+
+        .sim-equation {
+            font-family: var(--font-eng);
+            text-align: center;
+            font-size: 18px;
+            font-weight: 600;
+            color: #ffffff;
+            min-height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0,0,0,0.3);
+            border-radius: 8px;
+            padding: 8px;
+        }
+
+        .btn-panel {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-top: 16px;
+        }
+
+        .btn-sim {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid var(--card-border);
+            color: var(--text-main);
+            padding: 12px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-family: var(--font-thai);
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .btn-sim.active {
+            background: var(--primary);
+            color: black;
+            border-color: var(--primary);
+            box-shadow: 0 0 10px rgba(16, 185, 129, 0.3);
+        }
+
+        /* Slide 6: Media and Record Table */
+        .media-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .media-list li {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+        }
+
+        .media-icon-wrapper {
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            width: 44px;
+            height: 44px;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--primary);
+            flex-shrink: 0;
+        }
+
+        .media-desc h4 {
+            font-size: 16px;
+            font-weight: 600;
+            color: white;
+        }
+
+        .media-desc p {
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        /* Printable Table Mockup */
+        .table-mockup {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+        }
+
+        .table-mockup th, .table-mockup td {
+            border: 1px solid var(--card-border);
+            padding: 10px;
+            text-align: center;
+        }
+
+        .table-mockup th {
+            background: rgba(16, 185, 129, 0.08);
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .table-mockup td {
+            color: var(--text-muted);
+        }
+
+        .height-row-badge {
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            color: var(--primary);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 600;
+            display: inline-block;
+            margin-top: 4px;
+        }
+
+        /* Slide 7: Conclusion */
+        .key-points {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+
+        .key-point-item {
+            display: flex;
+            gap: 16px;
+            align-items: flex-start;
+        }
+
+        .key-point-icon {
+            font-size: 20px;
+            color: var(--primary);
+            margin-top: 4px;
+        }
+
+        .key-point-text h4 {
+            font-size: 18px;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 6px;
+        }
+
+        .key-point-text p {
+            font-size: 14px;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        /* Navigation Bar */
+        footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 24px 48px;
+            z-index: 10;
+            border-top: 1px solid var(--card-border);
+            background: rgba(11, 15, 25, 0.6);
+            backdrop-filter: blur(10px);
+        }
+
+        .controls {
+            display: flex;
+            gap: 16px;
+        }
+
+        .btn-nav {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--card-border);
+            color: var(--text-main);
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 16px;
+        }
+
+        .btn-nav:hover:not(:disabled) {
+            background: rgba(16, 185, 129, 0.1);
+            border-color: var(--primary);
+            color: var(--primary);
+            transform: scale(1.05);
+        }
+
+        .btn-nav:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+
+        .progress-bar-wrapper {
+            flex-grow: 1;
+            max-width: 500px;
+            margin: 0 40px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .progress-bar-bg {
+            background: rgba(255, 255, 255, 0.1);
+            height: 6px;
+            border-radius: 99px;
+            flex-grow: 1;
+            overflow: hidden;
+        }
+
+        .progress-bar-fill {
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            height: 100%;
+            width: 14.3%;
+            border-radius: 99px;
+            transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .progress-text {
+            font-family: var(--font-eng);
+            font-size: 14px;
+            color: var(--text-muted);
+            min-width: 45px;
+            text-align: right;
+        }
+
+        .shortcuts-tip {
+            font-size: 13px;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .shortcuts-tip kbd {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--card-border);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: var(--font-eng);
+            font-size: 11px;
+        }
+
+        /* Responsive Layout */
+        @media (max-width: 768px) {
+            header {
+                padding: 16px 24px;
+            }
+            .slide-container {
+                padding: 20px;
+            }
+            .grid-2 {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            .grid-3 {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+            .slide-title {
+                font-size: 28px;
+            }
+            .cover-title {
+                font-size: 34px;
+            }
+            footer {
+                padding: 16px 24px;
+                flex-direction: column;
+                gap: 16px;
+            }
+            .progress-bar-wrapper {
+                margin: 0;
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Decorative grid -->
+    <div class="bg-grid"></div>
+
+    <!-- Header -->
+    <header>
+        <div class="logo-area">
+            <i class="fa-solid fa-cubes logo-icon"></i>
+            <span class="logo-text">BOX MASTER 2569</span>
+        </div>
+        <div class="badge-standard">
+            ตัวชี้วัด ค 2.1 ป.6/1
+        </div>
+    </header>
+
+    <!-- Slide Container -->
+    <div class="slide-container">
+
+        <!-- Slide 1: Cover -->
+        <div class="slide active" id="slide-1">
+            <div class="cover-content">
+                <span class="cover-subtitle">Active Learning Lesson Plan</span>
+                <h1 class="cover-title">ผู้รับเหมากล่องแปลงร่าง<br>(Box Master Challenge)</h1>
+                <p class="cover-desc">
+                    แผนการจัดกิจกรรมคณิตศาสตร์เชิงรุก เรื่อง “ปริมาตรของรูปเรขาคณิตสามมิติประกอบ” ชั้นประถมศึกษาปีที่ 6
+                    ที่เปลี่ยนการคิดปริมาตรซ้อนทับซับซ้อนให้กลายเป็นการเรียนรู้เชิงภาพและนำเสนอวิธีคิดเลขลัดเพื่อตัดเวลากลางห้องสอบ O-NET
+                </p>
+                <div class="cover-badge-row">
+                    <div class="cover-badge">
+                        <i class="fa-solid fa-cube"></i>
+                        <span>ชั้นประถมศึกษาปีที่ 6</span>
+                    </div>
+                    <div class="cover-badge">
+                        <i class="fa-solid fa-layer-group"></i>
+                        <span>ปริมาตรทรงประกอบ (Composite Volume)</span>
+                    </div>
+                    <div class="cover-badge">
+                        <i class="fa-solid fa-calculator"></i>
+                        <span>เปรียบเทียบ 2 วิธีคิดลัด</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 2: The Challenge / O-NET Trap -->
+        <div class="slide" id="slide-2">
+            <h2 class="slide-title"><i class="fa-solid fa-circle-exclamation"></i>ปัญหาโจทย์ทรงประกอบและจุดพลาด O-NET</h2>
+            <div class="grid-2">
+                <div class="trap-list">
+                    <div class="trap-item">
+                        <div class="trap-number">1</div>
+                        <div class="trap-details">
+                            <h4>ไม่เข้าใจโครงสร้างความสูงรวม</h4>
+                            <p>เมื่อเจอกล่องวางซ้อนทับกัน นักเรียนสับสนในการนำความสูงของทั้งสองกล่องมารวมกัน หรืออ่านค่าความยาวมิติผิดส่วน</p>
+                        </div>
+                    </div>
+                    <div class="trap-item">
+                        <div class="trap-number">2</div>
+                        <div class="trap-details">
+                            <h4>คิดเลขแยกชิ้นเสียเวลาคูณซ้ำซ้อน</h4>
+                            <p>ในโจทย์ "ฐานเท่ากัน" เด็กส่วนใหญ่ตั้งคำนวณแยกกล่องสองครั้งแล้วนำผลลัพธ์มาบวกกัน ทำให้มีจุดเสี่ยงคูณเลขผิดและเสียเวลาทำข้อสอบมาก</p>
+                        </div>
+                    </div>
+                    <div class="trap-item">
+                        <div class="trap-number">3</div>
+                        <div class="trap-details">
+                            <h4>ขาดจินตภาพเชิงมิติสัมพันธ์</h4>
+                            <p>นักเรียนอ่านคำบรรยายโจทย์ที่เป็นตัวหนังสือแล้วจินตนาการภาพการซ้อนกันของกล่องไม่ออก ส่งผลให้แทนค่าสูตรผิดพลาด</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="image-illustration">
+                    <div class="glass-card" style="padding: 16px; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 16px;">
+                        <img src="composite_blocks.png" alt="กล่องประกอบ" style="width: 100%; max-width: 320px; border-radius: 12px; border: 1px solid var(--card-border); box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);">
+                        <p style="font-size: 15px; color: var(--primary); font-weight: 600;">
+                            โจทย์เป้าหมาย: กล่อง 2 ใบมีฐานเท่ากัน ซ้อนทับกัน
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 3: Development Goals -->
+        <div class="slide" id="slide-3">
+            <h2 class="slide-title"><i class="fa-solid fa-bullseye"></i>เป้าหมายการพัฒนา (Development Goals)</h2>
+            <div class="grid-2">
+                <div class="glass-card goal-card">
+                    <h3>เป้าหมายเชิงปริมาณ (Quantitative)</h3>
+                    <ul class="goal-list">
+                        <li>นักเรียนไม่น้อยกว่า <strong>ร้อยละ 85</strong> สามารถวิเคราะห์สเกลรูปทรงและหาคำตอบปริมาตรรูปทรงประกอบได้อย่างถูกต้อง</li>
+                        <li>คะแนนเฉลี่ยการแก้โจทย์ทรงประกอบ O-NET สูงขึ้น <strong>ไม่น้อยกว่าร้อยละ 15</strong> หลังสิ้นกิจกรรม</li>
+                    </ul>
+                </div>
+                <div class="glass-card goal-card">
+                    <h3>เป้าหมายเชิงคุณภาพ (Qualitative)</h3>
+                    <ul class="goal-list">
+                        <li>นักเรียนมีพัฒนาการความเข้าใจเชิงมิติสัมพันธ์ (Spatial Visualization) สามารถอ่านแบบแปลน 3 มิติได้</li>
+                        <li>นักเรียนเข้าใจการคิดเลขลัดด้วยการรวบรวมส่วนสูงเมื่อฐานมีขนาดเท่ากัน ช่วยย่นระยะเวลาทำข้อสอบลงได้ถึงครึ่งหนึ่ง</li>
+                        <li>มีทักษะกระบวนการคิดและแก้ปัญหาโจทย์ที่ยืดหยุ่นและหลากหลายรูปแบบ</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 4: CPA Process (Steps 1-3) -->
+        <div class="slide" id="slide-4">
+            <h2 class="slide-title"><i class="fa-solid fa-route"></i>การดำเนินการเรียนรู้ C-P-A ในบทเรียนปริมาตร</h2>
+            <div class="grid-3">
+                <div class="glass-card cpa-step">
+                    <span class="cpa-badge">CONCRETE</span>
+                    <h3>ขั้นที่ 1: วัดกล่องจริง ซ้อนจริง</h3>
+                    <p>
+                        ครูแจกกล่องจำลอง 2 ใบให้แต่ละกลุ่ม (ใบแรกสูง 12 ซม. ใบที่สองสูง 8 ซม. ฐานเท่ากัน 10 &times; 15 ซม.) 
+                        นักเรียนใช้ไม้บรรทัดวัดมิติจริงทางกายภาพ แล้วทดลองวางซ้อนกันเพื่อสังเกตความหมายคำว่า "ฐานกล่องเท่ากันซ้อนกัน"
+                    </p>
+                </div>
+                
+                <div class="glass-card cpa-step">
+                    <span class="cpa-badge">PICTORIAL</span>
+                    <h3>ขั้นที่ 2: ร่างภาพแปลน 3 มิติ</h3>
+                    <p>
+                        นักเรียนร่างรูปทรง 3 มิติของกล่องซ้อนกันลงในกระดาษ Isometric Dot 
+                        ช่วยระบุตัวเลขความกว้าง (10 ซม.) ยาว (15 ซม.) และความสูงแต่ละช่วง 
+                        เป็นการเปลี่ยนสิ่งสัมผัส (Concrete) มาเป็นภาพร่างโครงขยายในสมอง
+                    </p>
+                </div>
+                
+                <div class="glass-card cpa-step">
+                    <span class="cpa-badge">ABSTRACT</span>
+                    <h3>ขั้นที่ 3: แสดงสมการ 2 วิธียอดฮิต</h3>
+                    <p>
+                        แสดงวิธีคำนวณทางคณิตศาสตร์ 2 วิธี:
+                        <br><strong>วิธีที่ 1 (แยกคูณ):</strong> \((10 \times 15 \times 12) + (10 \times 15 \times 8)\)
+                        <br><strong>วิธีที่ 2 (รวมความสูง):</strong> \(10 \times 15 \times (12 + 8)\)
+                        <br>และร่วมกันคิดสรุปผลการประหยัดขั้นตอนตัวเลขลงใบงานกลุ่ม
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 5: Interactive Stacking Block Simulator -->
+        <div class="slide" id="slide-5">
+            <h2 class="slide-title"><i class="fa-solid fa-cubes"></i>ขั้นที่ 4: การเปรียบเทียบแนวทางคิดแก้โจทย์แบบโต้ตอบ</h2>
+            <div class="grid-2">
+                <div class="simulator-display">
+                    <div class="box-stage" id="box-stage">
+                        <!-- Top block -->
+                        <div class="render-box box-top" id="top-block">
+                            <span>สูง 8 ซม.</span>
+                        </div>
+                        
+                        <!-- Bottom block -->
+                        <div class="render-box box-bottom" id="bottom-block">
+                            <span>สูง 12 ซม.</span>
+                        </div>
+                        
+                        <!-- Labels -->
+                        <span class="box-label" style="bottom: 10px; left: 10px;">กว้าง 10 ซม.</span>
+                        <span class="box-label" style="bottom: 10px; right: 10px;">ยาว 15 ซม.</span>
+                    </div>
+                    
+                    <div class="sim-equation" id="sim-eq">
+                        สถานะ: เลือกวิธีการคำนวณจำลองด้านขวาเพื่อเริ่มแสดงขั้นตอน
+                    </div>
+                </div>
+
+                <div class="glass-card" style="display: flex; flex-direction: column; justify-content: space-between;">
+                    <div>
+                        <h3 style="font-size: 20px; color: var(--primary); margin-bottom: 12px;"><i class="fa-solid fa-microchip"></i> เปรียบเทียบ 2 วิธีวิเคราะห์</h3>
+                        <p style="font-size: 15px; line-height: 1.6; color: var(--text-muted); margin-bottom: 16px;">
+                            <strong>วิเคราะห์แนวทางสอบ:</strong> โจทย์ O-NET ที่มีฐานเท่ากัน การสอนให้นักเรียนรวบความสูงก่อนคิดเลขจะปลอดภัยกว่ามาก 
+                            เพราะช่วยย่นระยะเวลาการคูณเลขจาก 2 รอบเหลือเพียงรอบเดียว และป้องกันการคิดทศนิยมพลาดครับ
+                        </p>
+                    </div>
+                    <div class="btn-panel">
+                        <button class="btn-sim" id="btn-sep" onclick="triggerSim('separated')">วิธีที่ 1: แยกชิ้นคำนวณ</button>
+                        <button class="btn-sim" id="btn-comb" onclick="triggerSim('combined')">วิธีที่ 2: รวมความสูง</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 6: Media and Record Table -->
+        <div class="slide" id="slide-6">
+            <h2 class="slide-title"><i class="fa-solid fa-tools"></i>ขั้นที่ 5: คลังสื่อการสอนและตารางวัดผลสัมฤทธิ์</h2>
+            <div class="grid-2">
+                <div class="glass-card" style="display: flex; flex-direction: column; justify-content: space-between;">
+                    <div>
+                        <h3 style="font-size: 18px; margin-bottom: 16px; color: var(--primary);">ชุดสื่อประจำกิจกรรม</h3>
+                        <ul class="media-list">
+                            <li>
+                                <div class="media-icon-wrapper">
+                                    <i class="fa-solid fa-box"></i>
+                                </div>
+                                <div class="media-desc">
+                                    <h4>กล่องกระดาษพับแบบกำหนดมิติ</h4>
+                                    <p>กล่องจริงระบุมิติตามโจทย์ให้เด็กวัดและนำมาวางซ้อนกัน</p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="media-icon-wrapper">
+                                    <i class="fa-solid fa-grid-2"></i>
+                                </div>
+                                <div class="media-desc">
+                                    <h4>กระดาษ Isometric Dot</h4>
+                                    <p>ช่วยให้ร่างแบบแปลน 3 มิติได้อย่างรวดเร็วและเป็นสัดส่วน</p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="media-icon-wrapper">
+                                    <i class="fa-solid fa-file-signature"></i>
+                                </div>
+                                <div class="media-desc">
+                                    <h4>คลังข้อสอบ O-NET ทรงประกอบคู่ขนาน</h4>
+                                    <p>โจทย์คณิตคละรูปแบบรายบุคคลเพื่อใช้ทดสอบหลังบทเรียน</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="glass-card">
+                    <h3 style="font-size: 18px; margin-bottom: 12px; color: var(--primary); text-align: center;">ตารางบันทึกคะแนนก้าวหน้าครู</h3>
+                    <table class="table-mockup">
+                        <thead>
+                            <tr>
+                                <th>ที่</th>
+                                <th>ชื่อ - นามสกุล นักเรียน</th>
+                                <th>วัด &amp; วาดร่าง</th>
+                                <th>วิเคราะห์ 2 วิธี</th>
+                                <th>โจทย์คู่ขนาน</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>เด็กชายมานะ มีใจ</td>
+                                <td>10</td>
+                                <td>10</td>
+                                <td>9</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>เด็กหญิงสมใจ ใฝ่รู้</td>
+                                <td>9</td>
+                                <td>10</td>
+                                <td>8</td>
+                            </tr>
+                            <tr style="background: rgba(255, 255, 255, 0.02);">
+                                <td>...</td>
+                                <td>(ความสูงแถวจดบันทึกจริง)</td>
+                                <td>...</td>
+                                <td>...</td>
+                                <td>...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div style="text-align: center;">
+                        <span class="height-row-badge"><i class="fa-solid fa-arrows-up-down"></i> แถวข้อมูลในใบประเมินจริงสูง 1.2 ซม. (สะดวกในการเขียนปากกาสรุปผล)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 7: Conclusion -->
+        <div class="slide" id="slide-7">
+            <h2 class="slide-title"><i class="fa-solid fa-check-double"></i>บทสรุปและจุดเด่นกิจกรรมปริมาตรทรงประกอบ</h2>
+            <div class="glass-card" style="padding: 40px;">
+                <div class="key-points">
+                    <div class="key-point-item">
+                        <i class="fa-solid fa-eye key-point-icon"></i>
+                        <div class="key-point-text">
+                            <h4>เชื่อมมิติสัมพันธ์ให้เห็นภาพจริง</h4>
+                            <p>การวัดและร่างรูป 3 มิติช่วยให้นักเรียนสามารถจำแนกสเกลของโจทย์ประยุกต์ O-NET ได้ง่ายและชัดเจนขึ้น</p>
+                        </div>
+                    </div>
+                    
+                    <div class="key-point-item">
+                        <i class="fa-solid fa-gauge-high key-point-icon"></i>
+                        <div class="key-point-text">
+                            <h4>เซฟเวลาคิดเลขได้เท่าตัว</h4>
+                            <p>เทคนิคยุบรวมส่วนสูงช่วยลดขั้นตอนคูณเลขจาก 2 รอบเหลือรอบเดียว ทำให้ทำข้อสอบเสร็จไวขึ้นอย่างโดดเด่น</p>
+                        </div>
+                    </div>
+                    
+                    <div class="key-point-item">
+                        <i class="fa-solid fa-scroll key-point-icon"></i>
+                        <div class="key-point-text">
+                            <h4>เอกสารเป็นทางการของครูคณิต</h4>
+                            <p>เอกสารจริงเขียนจัดหน้าในฟอนต์ TH Sarabun New ทั้งระบบ พร้อมพิมพ์ส่งรายงานหัวหน้างานวิชาการได้ทันที</p>
+                        </div>
+                    </div>
+                    
+                    <div class="key-point-item">
+                        <i class="fa-solid fa-database key-point-icon"></i>
+                        <div class="key-point-text">
+                            <h4>ตรวจประเมินได้เรียบง่ายตรงตามจริง</h4>
+                            <p>ตารางบันทึกขนาด 1.2 ซม. ช่วยรายงานผลการเรียนรู้ของนักเรียนอย่างตรงมิติข้อมูล ไร้ความซับซ้อน</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="shortcuts-tip">
+            <i class="fa-regular fa-keyboard"></i>
+            <span>กดปุ่ม <kbd>←</kbd> <kbd>→</kbd> หรือกดคลิกเมาส์ที่ปุ่มนำทางเพื่อเปลี่ยนสไลด์</span>
+        </div>
+        
+        <div class="progress-bar-wrapper">
+            <div class="progress-bar-bg">
+                <div class="progress-bar-fill" id="progress-fill"></div>
+            </div>
+            <span class="progress-text" id="progress-text">1 / 7</span>
+        </div>
+
+        <div class="controls">
+            <button class="btn-nav" id="btn-prev" disabled onclick="navigateSlide(-1)">
+                <i class="fa-solid fa-chevron-left"></i>
+            </button>
+            <button class="btn-nav" id="btn-next" onclick="navigateSlide(1)">
+                <i class="fa-solid fa-chevron-right"></i>
+            </button>
+        </div>
+    </footer>
+
+    <!-- Slide Navigation and Interactive Logic -->
+    <script>
+        const totalSlides = 7;
+        let currentSlide = 1;
+
+        // Slide navigation
+        function navigateSlide(direction) {
+            const newSlide = currentSlide + direction;
+            if (newSlide >= 1 && newSlide <= totalSlides) {
+                // Remove active class from old slide
+                document.getElementById(`slide-${currentSlide}`).classList.remove('active');
+                
+                // Add active class to new slide
+                document.getElementById(`slide-${newSlide}`).classList.add('active');
+                
+                currentSlide = newSlide;
+                updateControls();
+            }
+        }
+
+        // Update progress bar and navigation buttons
+        function updateControls() {
+            // Update button states
+            document.getElementById('btn-prev').disabled = (currentSlide === 1);
+            document.getElementById('btn-next').disabled = (currentSlide === totalSlides);
+            
+            // Update progress bar width
+            const percent = (currentSlide / totalSlides) * 100;
+            document.getElementById('progress-fill').style.width = `${percent}%`;
+            
+            // Update progress text
+            document.getElementById('progress-text').innerText = `${currentSlide} / ${totalSlides}`;
+        }
+
+        // Keyboard listener for navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                e.preventDefault();
+                navigateSlide(1);
+            } else if (e.key === 'ArrowLeft') {
+                e.preventDefault();
+                navigateSlide(-1);
+            }
+        });
+
+        // Interactive Box Simulation
+        function triggerSim(mode) {
+            const stage = document.getElementById('box-stage');
+            const eq = document.getElementById('sim-eq');
+            
+            const btnSep = document.getElementById('btn-sep');
+            const btnComb = document.getElementById('btn-comb');
+            
+            if (mode === 'separated') {
+                stage.className = 'box-stage separated';
+                eq.innerHTML = "<strong>วิธีที่ 1 (แยกคำนวณ):</strong> \\((10 \\times 15 \\times 12) + (10 \\times 15 \\times 8) = 1,800 + 1,200 = 3,000\\text{ cm}^3\\)";
+                btnSep.className = 'btn-sim active';
+                btnComb.className = 'btn-sim';
+            } else if (mode === 'combined') {
+                stage.className = 'box-stage combined';
+                eq.innerHTML = "<strong>วิธีที่ 2 (รวมความสูง):</strong> \\(10 \\times 15 \\times (12 + 8) = 10 \\times 15 \\times 20 = 3,000\\text{ cm}^3\\)";
+                btnSep.className = 'btn-sim';
+                btnComb.className = 'btn-sim active';
+            }
+            
+            // Ask MathJax to reprocess the equation
+            if (window.MathJax && window.MathJax.typeset) {
+                window.MathJax.typeset();
+            }
+        }
+    </script>
+</body>
+</html>
