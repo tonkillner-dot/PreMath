@@ -1,0 +1,1172 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>นำเสนอแผนกิจกรรม Active Learning: ความยาวรอบรูปวงกลม ป.6</title>
+    <!-- Import Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@300;400;500;600;700&family=Outfit:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- MathJax for rendering LaTeX -->
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['\\(', '\\)'], ['$', '$']],
+                displayMath: [['\\[', '\\]'], ['$$', '$$']]
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    
+    <style>
+        /* Reset and Base Styles */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --bg-color: #080b16;
+            --primary: #00f0ff;
+            --secondary: #ab3cff;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --card-bg: rgba(255, 255, 255, 0.03);
+            --card-border: rgba(255, 255, 255, 0.08);
+            --accent-green: #10b981;
+            --accent-red: #ef4444;
+            --font-thai: 'Noto Sans Thai', sans-serif;
+            --font-eng: 'Outfit', sans-serif;
+        }
+
+        body {
+            font-family: var(--font-thai);
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            overflow: hidden;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(0, 240, 255, 0.05) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(171, 60, 255, 0.05) 0%, transparent 40%);
+        }
+
+        /* Background Animated Circle Graphic */
+        .bg-circle-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80vmin;
+            height: 80vmin;
+            z-index: 0;
+            pointer-events: none;
+            opacity: 0.15;
+        }
+
+        .bg-circle {
+            width: 100%;
+            height: 100%;
+            border: 2px dashed var(--primary);
+            border-radius: 50%;
+            animation: rotateCircle 60s linear infinite;
+            position: relative;
+        }
+
+        .bg-circle::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 50%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary), transparent);
+            transform-origin: right center;
+        }
+
+        @keyframes rotateCircle {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* Header Section */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 24px 48px;
+            z-index: 10;
+            border-bottom: 1px solid var(--card-border);
+            background: rgba(8, 11, 22, 0.6);
+            backdrop-filter: blur(10px);
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-icon {
+            font-size: 24px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: pulseIcon 2s infinite ease-in-out;
+        }
+
+        @keyframes pulseIcon {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .logo-text {
+            font-family: var(--font-eng);
+            font-weight: 700;
+            font-size: 20px;
+            letter-spacing: 1px;
+        }
+
+        .badge-standard {
+            background: rgba(0, 240, 255, 0.1);
+            border: 1px solid rgba(0, 240, 255, 0.2);
+            color: var(--primary);
+            padding: 4px 12px;
+            border-radius: 99px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        /* Slide Container */
+        .slide-container {
+            flex-grow: 1;
+            position: relative;
+            z-index: 5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+        }
+
+        .slide {
+            position: absolute;
+            width: 90%;
+            max-width: 1200px;
+            height: 80%;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateX(50px) scale(0.98);
+            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .slide.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(0) scale(1);
+        }
+
+        /* Slide Content Common Typography */
+        .slide-title {
+            font-size: 38px;
+            font-weight: 700;
+            margin-bottom: 24px;
+            background: linear-gradient(90deg, #ffffff, #94a3b8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .slide-title i {
+            color: var(--primary);
+            font-size: 32px;
+        }
+
+        /* Layout Grids */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 24px;
+        }
+
+        /* Cards & Glassmorphism */
+        .glass-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            padding: 32px;
+            backdrop-filter: blur(12px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .glass-card:hover {
+            border-color: rgba(0, 240, 255, 0.2);
+            box-shadow: 0 8px 32px rgba(0, 240, 255, 0.05);
+            transform: translateY(-2px);
+        }
+
+        /* Slide Specific Designs */
+        /* Slide 1: Cover */
+        .cover-content {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .cover-subtitle {
+            color: var(--primary);
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-size: 16px;
+            margin-bottom: 16px;
+            font-family: var(--font-eng);
+        }
+
+        .cover-title {
+            font-size: 52px;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 24px;
+            background: linear-gradient(135deg, #ffffff 30%, var(--primary) 70%, var(--secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .cover-desc {
+            font-size: 20px;
+            color: var(--text-muted);
+            max-width: 800px;
+            line-height: 1.6;
+            margin-bottom: 40px;
+        }
+
+        .cover-badge-row {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+
+        .cover-badge {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 8px 20px;
+            border-radius: 99px;
+            font-size: 15px;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Slide 2: The Trap */
+        .trap-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .trap-item {
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+        }
+
+        .trap-number {
+            font-family: var(--font-eng);
+            font-weight: 800;
+            font-size: 28px;
+            color: var(--accent-red);
+            background: rgba(239, 68, 68, 0.1);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-shrink: 0;
+        }
+
+        .trap-details h4 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: #ffffff;
+        }
+
+        .trap-details p {
+            font-size: 15px;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        .circle-illustration {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .circle-model {
+            width: 250px;
+            height: 250px;
+            border: 4px solid var(--primary);
+            border-radius: 50%;
+            position: relative;
+            animation: pulseCircle 4s infinite ease-in-out;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 0 40px rgba(0, 240, 255, 0.2);
+        }
+
+        @keyframes pulseCircle {
+            0%, 100% { box-shadow: 0 0 20px rgba(0, 240, 255, 0.2); }
+            50% { box-shadow: 0 0 50px rgba(0, 240, 255, 0.4); }
+        }
+
+        .circle-radius-line {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 50%;
+            height: 4px;
+            background: var(--secondary);
+            transform-origin: left center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .radius-label {
+            position: absolute;
+            top: -24px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: var(--font-eng);
+            font-weight: 600;
+            color: var(--secondary);
+            font-size: 16px;
+            background: var(--bg-color);
+            padding: 0 6px;
+        }
+
+        .center-dot {
+            width: 12px;
+            height: 12px;
+            background: #ffffff;
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            box-shadow: 0 0 10px #ffffff;
+        }
+
+        /* Slide 3: Goals */
+        .goal-card {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .goal-card h3 {
+            font-size: 22px;
+            font-weight: 600;
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 8px;
+            margin-bottom: 12px;
+        }
+
+        .goal-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .goal-list li {
+            position: relative;
+            padding-left: 28px;
+            font-size: 15px;
+            line-height: 1.5;
+        }
+
+        .goal-list li::before {
+            content: '\f058';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            top: 2px;
+            color: var(--primary);
+        }
+
+        /* Slide 4: CPA Process */
+        .cpa-step {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            position: relative;
+        }
+
+        .cpa-badge {
+            align-self: flex-start;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            padding: 6px 16px;
+            border-radius: 8px;
+            font-family: var(--font-eng);
+            font-weight: 700;
+            font-size: 14px;
+            letter-spacing: 1px;
+        }
+
+        .cpa-step h3 {
+            font-size: 20px;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .cpa-step p {
+            font-size: 14px;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        /* Slide 5: Interactive Shortcut Calculator */
+        .calculator-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .calc-display {
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            padding: 24px;
+            font-family: var(--font-eng);
+            min-height: 180px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .calc-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+            font-size: 20px;
+        }
+
+        .calc-label {
+            color: var(--text-muted);
+            font-size: 14px;
+            font-family: var(--font-thai);
+        }
+
+        .calc-value {
+            font-weight: 600;
+        }
+
+        .highlight-yellow {
+            color: #f59e0b;
+        }
+
+        .highlight-cyan {
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        .btn-compare {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border: none;
+            color: white;
+            font-family: var(--font-thai);
+            font-weight: 600;
+            padding: 14px 28px;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            font-size: 16px;
+            box-shadow: 0 4px 15px rgba(0, 240, 255, 0.2);
+        }
+
+        .btn-compare:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 240, 255, 0.3);
+        }
+
+        .btn-compare:active {
+            transform: translateY(0);
+        }
+
+        /* Slide 6: Media and Record Table */
+        .media-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .media-list li {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+        }
+
+        .media-icon-wrapper {
+            background: rgba(171, 60, 255, 0.1);
+            border: 1px solid rgba(171, 60, 255, 0.2);
+            width: 44px;
+            height: 44px;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--secondary);
+            flex-shrink: 0;
+        }
+
+        .media-desc h4 {
+            font-size: 16px;
+            font-weight: 600;
+            color: white;
+        }
+
+        .media-desc p {
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        /* Printable Table Mockup */
+        .table-mockup {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+        }
+
+        .table-mockup th, .table-mockup td {
+            border: 1px solid var(--card-border);
+            padding: 10px;
+            text-align: center;
+        }
+
+        .table-mockup th {
+            background: rgba(0, 240, 255, 0.08);
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .table-mockup td {
+            color: var(--text-muted);
+        }
+
+        .height-row-badge {
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            color: var(--accent-green);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 600;
+            display: inline-block;
+            margin-top: 4px;
+        }
+
+        /* Slide 7: Conclusion */
+        .key-points {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+
+        .key-point-item {
+            display: flex;
+            gap: 16px;
+            align-items: flex-start;
+        }
+
+        .key-point-icon {
+            font-size: 20px;
+            color: var(--primary);
+            margin-top: 4px;
+        }
+
+        .key-point-text h4 {
+            font-size: 18px;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 6px;
+        }
+
+        .key-point-text p {
+            font-size: 14px;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        /* Navigation Bar */
+        footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 24px 48px;
+            z-index: 10;
+            border-top: 1px solid var(--card-border);
+            background: rgba(8, 11, 22, 0.6);
+            backdrop-filter: blur(10px);
+        }
+
+        .controls {
+            display: flex;
+            gap: 16px;
+        }
+
+        .btn-nav {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--card-border);
+            color: var(--text-main);
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 16px;
+        }
+
+        .btn-nav:hover:not(:disabled) {
+            background: rgba(0, 240, 255, 0.1);
+            border-color: var(--primary);
+            color: var(--primary);
+            transform: scale(1.05);
+        }
+
+        .btn-nav:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+
+        .progress-bar-wrapper {
+            flex-grow: 1;
+            max-width: 500px;
+            margin: 0 40px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .progress-bar-bg {
+            background: rgba(255, 255, 255, 0.1);
+            height: 6px;
+            border-radius: 99px;
+            flex-grow: 1;
+            overflow: hidden;
+        }
+
+        .progress-bar-fill {
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            height: 100%;
+            width: 14.3%; /* Default for Slide 1 of 7 */
+            border-radius: 99px;
+            transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .progress-text {
+            font-family: var(--font-eng);
+            font-size: 14px;
+            color: var(--text-muted);
+            min-width: 45px;
+            text-align: right;
+        }
+
+        .shortcuts-tip {
+            font-size: 13px;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .shortcuts-tip kbd {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--card-border);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: var(--font-eng);
+            font-size: 11px;
+        }
+
+        /* Keyboard layout compatibility on mobile */
+        @media (max-width: 768px) {
+            header {
+                padding: 16px 24px;
+            }
+            .slide-container {
+                padding: 20px;
+            }
+            .grid-2 {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            .grid-3 {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+            .slide-title {
+                font-size: 28px;
+            }
+            .cover-title {
+                font-size: 34px;
+            }
+            footer {
+                padding: 16px 24px;
+                flex-direction: column;
+                gap: 16px;
+            }
+            .progress-bar-wrapper {
+                margin: 0;
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Animated Circle Graphic Background -->
+    <div class="bg-circle-container">
+        <div class="bg-circle"></div>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="logo-area">
+            <i class="fa-solid fa-compass-drafting logo-icon"></i>
+            <span class="logo-text">ACTIVE MATH 2569</span>
+        </div>
+        <div class="badge-standard">
+            ตัวชี้วัด ค 2.1 ป.6/3
+        </div>
+    </header>
+
+    <!-- Slide Container -->
+    <div class="slide-container">
+
+        <!-- Slide 1: Cover -->
+        <div class="slide active" id="slide-1">
+            <div class="cover-content">
+                <span class="cover-subtitle">Active Learning Lesson Plan</span>
+                <h1 class="cover-title">วิศวกรน้อยล้อมรั้วสระน้ำพุ<br>(Circle Fence Constructor)</h1>
+                <p class="cover-desc">
+                    แผนการจัดกิจกรรมคณิตศาสตร์เชิงรุก เรื่อง “ความยาวรอบรูปวงกลม” ระดับชั้นประถมศึกษาปีที่ 6
+                    ที่มุ่งสลายความซับซ้อน สร้างมิติสัมพันธ์ และแก้จุดตายข้อสอบ O-NET
+                </p>
+                <div class="cover-badge-row">
+                    <div class="cover-badge">
+                        <i class="fa-solid fa-graduation-cap"></i>
+                        <span>ชั้นประถมศึกษาปีที่ 6</span>
+                    </div>
+                    <div class="cover-badge">
+                        <i class="fa-solid fa-bullseye"></i>
+                        <span>เน้นเทคนิคสลายจุดลวง O-NET</span>
+                    </div>
+                    <div class="cover-badge">
+                        <i class="fa-solid fa-shapes"></i>
+                        <span>รูปธรรม ➔ สัญลักษณ์</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 2: The Challenge / O-NET Trap -->
+        <div class="slide" id="slide-2">
+            <h2 class="slide-title"><i class="fa-solid fa-circle-exclamation"></i>ปัญหาการเรียนรู้และกับดัก O-NET</h2>
+            <div class="grid-2">
+                <div class="trap-list">
+                    <div class="trap-item">
+                        <div class="trap-number">1</div>
+                        <div class="trap-details">
+                            <h4>สับสนระหว่างสูตรเส้นรอบวงและสูตรพื้นที่</h4>
+                            <p>นักเรียนมักแทนค่าสูตรสลับกันระหว่างการหาเส้นรอบวง \(2\pi r\) และพื้นที่ \(\pi r^2\) เมื่อเจอคีย์เวิร์ดคำว่า "ล้อมรั้ว"</p>
+                        </div>
+                    </div>
+                    <div class="trap-item">
+                        <div class="trap-number">2</div>
+                        <div class="trap-details">
+                            <h4>เสียเวลากับการหารทศนิยมกวนใจ</h4>
+                            <p>ข้อสอบจำกัดเวลามาก แต่นักเรียนยังติดวิธีตั้งคูณตัวเลขทีละหลักแล้วตั้งหารยาวภายหลัง (เช่น คูณเศษทั้งหมดแล้วเอา 7 หาร) ทำให้คิดเลขไม่ทัน</p>
+                        </div>
+                    </div>
+                    <div class="trap-item">
+                        <div class="trap-number">3</div>
+                        <div class="trap-details">
+                            <h4>ไม่เข้าใจที่มาของค่าคงที่พาย (\(\pi\))</h4>
+                            <p>จดจำสูตรแบบท่องจำโดยไม่รู้ที่มาของตัวแปร ส่งผลให้เมื่อเกิดความตื่นเต้นในห้องสอบจะลืมสูตรทันที</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="circle-illustration">
+                    <div class="glass-card" style="padding: 16px; text-align: center;">
+                        <img src="circle_fountain.png" alt="สระน้ำพุจำลอง" style="width: 100%; max-width: 340px; border-radius: 12px; border: 1px solid var(--card-border); box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); margin-bottom: 12px;">
+                        <p style="font-size: 15px; color: var(--primary); font-weight: 600;">
+                            แบบจำลองสถานการณ์: ล้อมรั้วสระน้ำพุที่มีรัศมียาว 3.5 เมตร
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 3: Development Goals -->
+        <div class="slide" id="slide-3">
+            <h2 class="slide-title"><i class="fa-solid fa-bullseye"></i>เป้าหมายการพัฒนา (Development Goals)</h2>
+            <div class="grid-2">
+                <div class="glass-card goal-card">
+                    <h3>เป้าหมายเชิงปริมาณ (Quantitative)</h3>
+                    <ul class="goal-list">
+                        <li>นักเรียนชั้น ป.6 ไม่น้อยกว่า <strong>ร้อยละ 85</strong> สามารถจำแนกโจทย์และหาคำตอบความยาวรอบรูปวงกลมได้อย่างถูกต้องเมื่อได้รับการทดสอบ</li>
+                        <li>คะแนนเฉลี่ยผลการทดสอบจำลอง (Mock Test) สูงขึ้นกว่าปีการศึกษาที่ผ่านมา <strong>ไม่น้อยกว่าร้อยละ 15</strong></li>
+                    </ul>
+                </div>
+                <div class="glass-card goal-card">
+                    <h3>เป้าหมายเชิงคุณภาพ (Qualitative)</h3>
+                    <ul class="goal-list">
+                        <li>นักเรียนเข้าใจเชิงมโนทัศน์เกี่ยวกับความสัมพันธ์ของส่วนประกอบวงกลมและที่มาของค่าคงตัว \(\pi\)</li>
+                        <li>นักเรียนเกิดทักษะการเลือกใช้คณิตศาสตร์คิดเลขเร็วแบบตัดทอนตัวเลขได้อย่างรวดเร็วในวันสอบจริง</li>
+                        <li>นักเรียนสามารถประยุกต์ทักษะเพื่อแก้ไขปัญหาโจทย์จำลองวิศวกรรมในชีวิตจริงได้อย่างสร้างสรรค์</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 4: CPA Process (Steps 1-3) -->
+        <div class="slide" id="slide-4">
+            <h2 class="slide-title"><i class="fa-solid fa-route"></i>ลำดับกิจกรรมตามหลัก C-P-A (ขั้นตอนที่ 1 - 3)</h2>
+            <div class="grid-3">
+                <div class="glass-card cpa-step">
+                    <span class="cpa-badge">CONCRETE</span>
+                    <h3>ขั้นที่ 1: ค้นพบค่า \(\pi\) ด้วยมือตนเอง</h3>
+                    <p>
+                        นักเรียนแบ่งกลุ่ม ช่วยกันใช้เชือกเส้นเล็กพันขอบจานกระดาษหรือฝากระป๋องเพื่อวัดความยาวเส้นรอบวง และวัดความยาวเส้นผ่านศูนย์กลาง 
+                        จากนั้นนำค่าทั้งสองมาหารกันเพื่อสังเกตว่าผลลัพธ์ของวัตถุทุกชนิดจะมีค่าใกล้เคียง <strong>3.14 หรือ 22/7 เสมอ</strong>
+                    </p>
+                </div>
+                
+                <div class="glass-card cpa-step">
+                    <span class="cpa-badge">PICTORIAL</span>
+                    <h3>ขั้นที่ 2: วาดสเก็ตช์แบบแปลนสระ</h3>
+                    <p>
+                        นักเรียนวาดรูปวงกลมลงในกระดาษเขียนแบบจำลองแนวรั้วล้อมรอบสระน้ำพุ ลากเส้นรัศมี 
+                        และลงสีเน้นขอบรอบรูปสระ <strong>(r = 3.5 เมตร)</strong> เพื่อกระตุ้นระบบประสาทตา (Spatial Visualization) ให้เข้าใจความแตกต่างระหว่างพื้นที่และเส้นรอบวงอย่างชัดเจน
+                    </p>
+                </div>
+                
+                <div class="glass-card cpa-step">
+                    <span class="cpa-badge">ABSTRACT</span>
+                    <h3>ขั้นที่ 3: แทนค่าลงในโมเดลสูตร</h3>
+                    <p>
+                        นักเรียนเขียนสัญลักษณ์แทนสูตรลงใบงานคณิตศาสตร์กลุ่ม 
+                        $$\text{ความยาวรั้ว} = 2\pi r$$
+                        แทนค่าทางคณิตศาสตร์:
+                        $$2 \times \frac{22}{7} \times 3.5$$
+                        และช่วยกันระดมสมองหาวิธีคำนวณที่ได้ผลลัพธ์รวดเร็วที่สุดในกลุ่ม
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 5: The Shortcut & Error Analysis -->
+        <div class="slide" id="slide-5">
+            <h2 class="slide-title"><i class="fa-solid fa-bolt"></i>ขั้นที่ 4: เทคนิคการคิดลัดและวิเคราะห์ข้อผิดพลาด</h2>
+            <div class="grid-2">
+                <div class="calculator-container">
+                    <div class="glass-card" style="padding: 24px;">
+                        <h4 style="margin-bottom: 16px; color: var(--primary);"><i class="fa-solid fa-chalkboard-user"></i> วิเคราะห์ข้อผิดพลาด (Error Analysis)</h4>
+                        <p style="font-size: 15px; line-height: 1.6; color: var(--text-muted);">
+                            <strong>ข้อสังเกตของครู:</strong> เด็กๆ มักจะนำเศษคูณเศษก่อนคือ \(2 \times 22 = 44\) 
+                            แล้วเอาไปคูณกับ \(3.5\) ได้ผลลัพธ์คือ \(154.0\) แล้วจึงนำมาหารด้วย \(7\) 
+                            ทำให้เกิดโอกาสคิดเลขอัตราส่วนทศนิยมผิดพลาดสูงมาก
+                        </p>
+                        <hr style="border: 0; border-top: 1px solid var(--card-border); margin: 16px 0;">
+                        <h4 style="margin-bottom: 12px; color: var(--accent-green);"><i class="fa-solid fa-lightbulb"></i> เทคนิคคิดลัดฉบับ O-NET</h4>
+                        <p style="font-size: 15px; line-height: 1.6;">
+                            ให้สลับการคูณโดยการนำจำนวนคู่หน้าคูณหลังก่อน: 
+                            <br><span style="color: var(--primary); font-weight: bold;">\(2 \times 3.5 = 7\)</span> 
+                            จากนั้นเอา \(7\) ไปตัดทอนกับตัวส่วน \(7\) ด้านล่าง จะได้คำตอบเท่ากับ <strong>\(22\) เมตร</strong> ได้ทันทีภายใน 3 วินาที!
+                        </p>
+                    </div>
+                </div>
+
+                <div class="glass-card">
+                    <h3 style="font-size: 18px; margin-bottom: 14px; text-align: center; color: white;">เครื่องคำนวณจำลองขั้นตอนเปรียบเทียบ</h3>
+                    <div class="calc-display">
+                        <div class="calc-row" id="step-0" style="opacity: 1;">
+                            <span class="calc-label">สมการเริ่มต้น:</span>
+                            <span class="calc-value">2 &times; (22/7) &times; 3.5</span>
+                        </div>
+                        <div class="calc-row" id="step-slow" style="opacity: 0.3; transition: all 0.3s;">
+                            <span class="calc-label">วิธีทั่วไป (ช้า):</span>
+                            <span class="calc-value">(2 &times; 22 &times; 3.5) / 7 = 154 / 7 = <span class="highlight-yellow">22 เมตร</span></span>
+                        </div>
+                        <div class="calc-row" id="step-fast" style="opacity: 0.3; transition: all 0.3s;">
+                            <span class="calc-label">วิธีคิดลัด (เร็ว):</span>
+                            <span class="calc-value">(2 &times; 3.5) &times; 22/7 = <span class="highlight-cyan">7 &times; 22/7 = 22 เมตร</span></span>
+                        </div>
+                    </div>
+                    <button class="btn-compare" style="width: 100%; margin-top: 16px;" onclick="simulateComparison()">
+                        <i class="fa-solid fa-play"></i> คลิกจำลองวิเคราะห์เปรียบเทียบ
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 6: Media & Advancement Table -->
+        <div class="slide" id="slide-6">
+            <h2 class="slide-title"><i class="fa-solid fa-layer-group"></i>ขั้นที่ 5: สื่อการสอนและแบบประเมิน</h2>
+            <div class="grid-2">
+                <div class="glass-card" style="display: flex; flex-direction: column; justify-content: space-between;">
+                    <div>
+                        <h3 style="font-size: 18px; margin-bottom: 16px; color: var(--primary);">สื่อการจัดกิจกรรม Active Learning</h3>
+                        <ul class="media-list">
+                            <li>
+                                <div class="media-icon-wrapper">
+                                    <i class="fa-solid fa-box"></i>
+                                </div>
+                                <div class="media-desc">
+                                    <h4>กล่องวัตถุทรงกลมในชีวิตจริง</h4>
+                                    <p>จานกระดาษ, ฝากระป๋อง และตลับสายวัดเชือกสำหรับวัดจริง</p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="media-icon-wrapper">
+                                    <i class="fa-solid fa-file-invoice"></i>
+                                </div>
+                                <div class="media-desc">
+                                    <h4>ใบงานวิศวกรน้อยสร้างรั้ว</h4>
+                                    <p>สำหรับเขียนแผนแปลน คำนวณสูตร และตรวจสอบกับดัก</p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="media-icon-wrapper">
+                                    <i class="fa-solid fa-list-check"></i>
+                                </div>
+                                <div class="media-desc">
+                                    <h4>คลังข้อสอบคู่ขนาน O-NET</h4>
+                                    <p>แบบประเมินความก้าวหน้ารายบุคคลหลังจบบทเรียน</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="glass-card">
+                    <h3 style="font-size: 18px; margin-bottom: 12px; color: var(--primary); text-align: center;">ตารางบันทึกความก้าวหน้าผลสัมฤทธิ์ (ครูใช้บันทึก)</h3>
+                    <table class="table-mockup">
+                        <thead>
+                            <tr>
+                                <th>ที่</th>
+                                <th>ชื่อ - นามสกุล นักเรียน</th>
+                                <th>วัด &amp; สเก็ตช์</th>
+                                <th>คิดลัด/ตัดทอน</th>
+                                <th>โจทย์คู่ขนาน</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>เด็กชายสมศักดิ์ รักดี</td>
+                                <td>10</td>
+                                <td>9</td>
+                                <td>8</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>เด็กหญิงสมศรี มีชัย</td>
+                                <td>10</td>
+                                <td>10</td>
+                                <td>9</td>
+                            </tr>
+                            <tr style="background: rgba(255, 255, 255, 0.02);">
+                                <td>...</td>
+                                <td>(ความสูงแถวจดบันทึกจริง)</td>
+                                <td>...</td>
+                                <td>...</td>
+                                <td>...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div style="text-align: center;">
+                        <span class="height-row-badge"><i class="fa-solid fa-arrows-up-down"></i> กำหนดความสูงแถวข้อมูลในใบงานจริงที่ 1.2 ซม. (จดบันทึกสะดวก)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 7: Conclusion -->
+        <div class="slide" id="slide-7">
+            <h2 class="slide-title"><i class="fa-solid fa-clipboard-check"></i>บทสรุปของกิจกรรมยกระดับผลสัมฤทธิ์</h2>
+            <div class="glass-card" style="padding: 40px;">
+                <div class="key-points">
+                    <div class="key-point-item">
+                        <i class="fa-solid fa-hand-holding-heart key-point-icon"></i>
+                        <div class="key-point-text">
+                            <h4>จัดกิจกรรมง่ายแต่ได้ผลสูง</h4>
+                            <p>การใช้เครื่องมือรอบตัวช่วยให้นักเรียนสามารถจำแนกสเกล และสร้างทักษะความคุ้นชินเชิงเรขาคณิตโดยไม่ต้องผ่านขั้นตอนกติกาซับซ้อน</p>
+                        </div>
+                    </div>
+                    
+                    <div class="key-point-item">
+                        <i class="fa-solid fa-bolt key-point-icon"></i>
+                        <div class="key-point-text">
+                            <h4>ปิดช่องว่างการเสียเวลาของเด็ก</h4>
+                            <p>การวิเคราะห์จุดลวง O-NET และสอนทางลัดในการคำนวณตัดทอนเลข ช่วยเซฟเวลาสอบและจำกัดความผิดพลาดจากอารมณ์ตื่นเต้นได้สูง</p>
+                        </div>
+                    </div>
+                    
+                    <div class="key-point-item">
+                        <i class="fa-solid fa-print key-point-icon"></i>
+                        <div class="key-point-text">
+                            <h4>ตอบโจทย์การทำงานของครูคณิตศาสตร์</h4>
+                            <p>เอกสารประกอบการสอนจัดวางเป็นระบบตามมาตรฐานเอกสารราชการไทย (TH Sarabun New) และตารางประเมินผลสูง 1.2 ซม. ที่ใช้งานได้ง่ายในห้องเรียนจริง</p>
+                        </div>
+                    </div>
+                    
+                    <div class="key-point-item">
+                        <i class="fa-solid fa-star key-point-icon"></i>
+                        <div class="key-point-text">
+                            <h4>สเปกเอกสารมีสไตล์และเป็นทางการ</h4>
+                            <p>ตรงตามข้อกำหนดฟอนต์และขอบหน้ากระดาษ เหมาะสมต่อการเสนอผู้บริหารสถานศึกษาหรือใช้นำเสนอเพื่อนร่วมงานวิชาการได้ทันที</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="shortcuts-tip">
+            <i class="fa-regular fa-keyboard"></i>
+            <span>กดปุ่ม <kbd>←</kbd> <kbd>→</kbd> หรือกดคลิกเมาส์ที่ปุ่มนำทางเพื่อเปลี่ยนสไลด์</span>
+        </div>
+        
+        <div class="progress-bar-wrapper">
+            <div class="progress-bar-bg">
+                <div class="progress-bar-fill" id="progress-fill"></div>
+            </div>
+            <span class="progress-text" id="progress-text">1 / 7</span>
+        </div>
+
+        <div class="controls">
+            <button class="btn-nav" id="btn-prev" disabled onclick="navigateSlide(-1)">
+                <i class="fa-solid fa-chevron-left"></i>
+            </button>
+            <button class="btn-nav" id="btn-next" onclick="navigateSlide(1)">
+                <i class="fa-solid fa-chevron-right"></i>
+            </button>
+        </div>
+    </footer>
+
+    <!-- Slide Navigation and Interactive Logic -->
+    <script>
+        const totalSlides = 7;
+        let currentSlide = 1;
+
+        // Slide navigation
+        function navigateSlide(direction) {
+            const newSlide = currentSlide + direction;
+            if (newSlide >= 1 && newSlide <= totalSlides) {
+                // Remove active class from old slide
+                document.getElementById(`slide-${currentSlide}`).classList.remove('active');
+                
+                // Add active class to new slide
+                document.getElementById(`slide-${newSlide}`).classList.add('active');
+                
+                currentSlide = newSlide;
+                updateControls();
+            }
+        }
+
+        // Update progress bar and navigation buttons
+        function updateControls() {
+            // Update button states
+            document.getElementById('btn-prev').disabled = (currentSlide === 1);
+            document.getElementById('btn-next').disabled = (currentSlide === totalSlides);
+            
+            // Update progress bar width
+            const percent = (currentSlide / totalSlides) * 100;
+            document.getElementById('progress-fill').style.width = `${percent}%`;
+            
+            // Update progress text
+            document.getElementById('progress-text').innerText = `${currentSlide} / ${totalSlides}`;
+        }
+
+        // Keyboard listener for navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                e.preventDefault();
+                navigateSlide(1);
+            } else if (e.key === 'ArrowLeft') {
+                e.preventDefault();
+                navigateSlide(-1);
+            }
+        });
+
+        // Interactive simulation on Slide 5
+        let animationStep = 0;
+        function simulateComparison() {
+            const stepSlow = document.getElementById('step-slow');
+            const stepFast = document.getElementById('step-fast');
+            
+            if (animationStep === 0) {
+                stepSlow.style.opacity = '1';
+                stepSlow.style.transform = 'scale(1.02)';
+                setTimeout(() => {
+                    stepSlow.style.transform = 'scale(1)';
+                }, 300);
+                animationStep = 1;
+            } else if (animationStep === 1) {
+                stepFast.style.opacity = '1';
+                stepFast.style.transform = 'scale(1.02)';
+                setTimeout(() => {
+                    stepFast.style.transform = 'scale(1)';
+                }, 300);
+                animationStep = 2;
+            } else {
+                stepSlow.style.opacity = '0.3';
+                stepFast.style.opacity = '0.3';
+                animationStep = 0;
+            }
+        }
+    </script>
+</body>
+</html>
